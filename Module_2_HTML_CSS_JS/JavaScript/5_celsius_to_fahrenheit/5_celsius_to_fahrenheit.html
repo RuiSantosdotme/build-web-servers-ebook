@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Convert Celsius to Fahrenheit</h1>
+    <p>Temperature:</p>
+    <p id="temperature">25</p>
+    <p><button onclick="convertToF()">Convert to Fahrenheit</button></p>
+    <script>
+      function convertToF() {
+        var temperatureC = document.getElementById("temperature").innerText;
+        console.log(temperatureC);
+        var temperatureF = ((temperatureC)*9/5) + 32;
+        document.getElementById("temperature").innerHTML = temperatureF;
+      }
+    </script>
+  </body>
+</html>

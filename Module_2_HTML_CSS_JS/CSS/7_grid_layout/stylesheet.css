@@ -1,0 +1,21 @@
+.box { 
+  background-color: rgb(66, 138, 148);
+}
+
+.mygrid { 
+  max-width: 800px; 
+  margin: 0 auto; 
+  display: grid; 
+  grid-gap: 2rem; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif; 
+  display: inline-block; 
+  text-align: center;
+}
+
+p {
+  font-size: 16px;
+}

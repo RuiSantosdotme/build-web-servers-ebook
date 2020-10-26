@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <p id="text1" onmousedown="mouseDown()" onmouseup="mouseUp()">Press down to change color to red. Release to change to green.</p>
+    <p id="text2" onmouseover="mouseOver()" onmouseout="mouseOut()">Move the mouse over this text to make it bigger.</p>
+    <script>
+      function mouseDown() {
+        document.getElementById("text1").style.color = "red";
+      }
+      function mouseUp() {
+        document.getElementById("text1").style.color = "green";
+      }
+      function mouseOver() {
+        document.getElementById("text2").style.fontSize = "20px";
+      }
+      function mouseOut() {
+        document.getElementById("text2").style.fontSize = "16px";
+      }
+    </script>
+  </body>
+</html>
