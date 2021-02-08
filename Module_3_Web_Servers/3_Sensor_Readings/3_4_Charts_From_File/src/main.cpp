@@ -38,7 +38,7 @@ const char* dataPath = "/data.txt";
 
 // Timer variables
 unsigned long lastTime = 0;
-unsigned long timerDelay = 10000;
+unsigned long timerDelay = 1800000;
 
 // Create a sensor object
 Adafruit_BME280 bme;         // BME280 connect to ESP32 I2C (GPIO 21 = SDA, GPIO 22 = SCL)
@@ -219,7 +219,7 @@ void setup() {
 
 void loop() {
   if ((millis() - lastTime) > timerDelay) {
-    // Send Events to the client with the Sensor Readings
+    // Send Events to the client with the Sensor Readings Every 30 minutes
     events.send("ping",NULL,millis());
     events.send(getSensorReadings().c_str(),"new_readings" ,millis());
     

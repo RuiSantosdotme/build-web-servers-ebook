@@ -109,7 +109,7 @@ void setup() {
 
 void loop() {
   if ((millis() - lastTime) > timerDelay) {
-    // Send Events to the client with the Sensor Readings Every 3 seconds
+    // Send Events to the client with the Sensor Readings Every 10 seconds
     events.send("ping",NULL,millis());
     events.send(getSensorReadings().c_str(),"new_readings" ,millis());
     lastTime = millis();
