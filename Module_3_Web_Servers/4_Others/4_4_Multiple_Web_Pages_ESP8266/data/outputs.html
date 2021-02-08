@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ESP Web Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon"  type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="disabled">ESP Web Server</a>
+      <div class="topnav-right">
+        <a href="outputs">Outputs</a>
+        <a href="sensors">Sensors</a>
+        <a href="/">About</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="handleNavBar()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div class="content">
+      <div class="card-grid">
+        <div class="card">             
+          <p class="card-title"><i class="fas fa-lightbulb"></i> GPIO 2</p>
+          <label class="switch">
+            <input type="checkbox" onchange="toggleCheckbox(this)" id="2">
+            <span class="slider"></span>
+          </label>
+          <p class ="state">State: <span id="2s"></span></p>
+        </div>
+        <div class="card">
+          <p class="card-title"><i class="fas fa-lightbulb"></i> GPIO 13</p>
+          <label class="switch">
+            <input type="checkbox" onchange="toggleCheckbox(this)" id="13">
+            <span class="slider"></span>
+          </label>
+          <p class ="state">State: <span id="13s"></span></p>
+        </div>
+        <div class="card">
+          <p class="card-title"><i class="fas fa-lightbulb"></i> GPIO 14</p>
+          <label class="switch">
+            <input type="checkbox" onchange="toggleCheckbox(this)" id="14">
+            <span class="slider"></span>
+          </label>
+          <p class ="state">State: <span id="14s"></span></p>
+        </div>
+        <div class="card">
+          <p class="card-title"><i class="fas fa-lightbulb"></i> GPIO 12</p>
+          <label class="switch">
+            <input type="checkbox" onchange="toggleCheckbox(this)" id="12">
+            <span class="slider"></span>
+          </label>
+          <p class="state">State: <span id="12s"></span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script-outputs.js"></script>
+  <script src="script.js"></script>
+</html>

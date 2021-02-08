@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP IOT DASHBOARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="topnav">
+    <h1>ESP WEB SERVER INPUT FIELDS</h1>
+  </div>
+  <div class="content">
+    <div class="card-grid">
+      <div class="card">
+        <form action="/" method="POST">
+          <p class="card-title">Text Field</p>
+          <p>
+            <label for="input1">Input 1</label>
+            <input type="text" id ="input1" name="input1">
+            <input type ="submit" value ="Submit">
+          </p>
+        </form>
+      </div>
+      <div class="card">
+        <form action="/" method="POST">
+          <p class="card-title">Number Field</p>
+          <p>
+            <label for="input2">Input 2</label>
+            <input type="number" id ="input2" name="input2">
+            <input type ="submit" value ="Submit">
+          </p>
+        </form>
+      </div>
+      <div class="card">
+        <p class="card-title">Text Value</p>
+        <p class="value">Current value: <span id="textFieldValue"></span></p>
+      </div>
+      <div class="card">
+        <p class="card-title">Number Value</p>
+        <p class="value">Current value: <span id="numberFieldValue"></span></p>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
