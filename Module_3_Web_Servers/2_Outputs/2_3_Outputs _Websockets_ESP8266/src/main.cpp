@@ -51,12 +51,12 @@ void initWiFi() {
 String processor(const String& var) {
   if(var == "STATE") {
     if(digitalRead(ledPin)) {
-      ledState = 0;
-      return "ON";
-    }
-    else{
       ledState = 1;
       return "OFF";
+    }
+    else{
+      ledState = 0;
+      return "ON";
     }
   }
   return String();
