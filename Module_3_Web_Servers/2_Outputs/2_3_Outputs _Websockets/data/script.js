@@ -18,13 +18,12 @@ function initWebSocket() {
 
 function onOpen(event) {
   console.log('Connection opened');
-  websocket.send('hi');
 }
 
 function onClose(event) {
   console.log('Connection closed');
   setTimeout(initWebSocket, 2000);
-} 
+}
 
 function onMessage(event) {
   document.getElementById('state').innerHTML = event.data;
