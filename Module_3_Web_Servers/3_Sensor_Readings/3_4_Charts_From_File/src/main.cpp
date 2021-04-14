@@ -17,6 +17,7 @@
 #include "time.h"
 #include <WiFiUdp.h>
 
+
 // Replace with your network credentials
 const char* ssid = "REPLACE_WITH_YOUR_SSID";
 const char* password = "REPLACE_WITH_YOUR_PASSWORD";
@@ -90,11 +91,11 @@ String readFile(fs::FS &fs, const char * path){
     Serial.println("- failed to open file for reading");
     return String();
   }
-  
+
   String fileContent;
   while(file.available()){
     fileContent += file.readStringUntil('\n');
-    break;     
+    break;
   }
   file.close();
   return fileContent;
@@ -162,9 +163,10 @@ void setup() {
   initSPIFFS();
 
   // Create a data.txt file
-  File file = SPIFFS.open(dataPath, FILE_READ);
-  if(!file) {
-    Serial.println("File doens't exist");
+  bool fileexists = SPIFFS.exists(dataPath);
+  Serial.print(fileexists);
+  if(!fileexists) {
+    Serial.println("File doesn't exist");
     Serial.println("Creating file...");
     // Prepare readings to add to the file
     String message = getSensorReadings() + ",";
@@ -172,9 +174,8 @@ void setup() {
     appendFile(SPIFFS, dataPath, message.c_str());
   }
   else {
-    Serial.println("File already exists");  
+    Serial.println("File already exists");
   }
-  file.close();
 
   // Web Server Root URL
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
@@ -188,12 +189,12 @@ void setup() {
     request->send(SPIFFS, "/data.txt", "text/txt");
   });
 
-  // Request for raw data
+  // Request for the latest sensor readings
   server.on("/view-data", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/data.txt", "text/txt");
   });
 
-  // Request to delete data.txt file
+  // Request for the latest sensor readings
   server.on("/delete-data", HTTP_GET, [](AsyncWebServerRequest *request){
     deleteFile(SPIFFS, dataPath);
     request->send(200, "text/plain", "data.txt has been deleted.");
@@ -218,11 +219,12 @@ void setup() {
 }
 
 void loop() {
-  if ((millis() - lastTime) > timerDelay) {
-    // Send Events to the client with the Sensor Readings Every 30 minutes
+if ((millis() - lastTime) > timerDelay) {
+
+    // Send Events to the client with the Sensor Readings
     events.send("ping",NULL,millis());
     events.send(getSensorReadings().c_str(),"new_readings" ,millis());
-    
+
     String message = getSensorReadings() + ",";
     if ((getFileSize(SPIFFS, dataPath))>= 3400){
       Serial.print("Too many data points, deleting file...");
@@ -239,5 +241,6 @@ void loop() {
     lastTime = millis();
 
     Serial.print(readFile(SPIFFS, dataPath));
+
   }
 }

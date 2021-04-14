@@ -17,6 +17,7 @@
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 
+
 // Replace with your network credentials
 const char* ssid = "REPLACE_WITH_YOUR_SSID";
 const char* password = "REPLACE_WITH_YOUR_PASSWORD";
@@ -110,7 +111,7 @@ void appendFile(fs::FS &fs, const char * path, const char * message){
   } else {
     Serial.println("- append failed");
   }
-  file.close();
+file.close();
 }
 
 // Delete File
@@ -167,19 +168,19 @@ void setup() {
   timeClient.setTimeOffset(0);
 
   // Create a data.txt file
-  File file = LittleFS.open(dataPath, "r");
-  if(!file) {
-    Serial.println("File doens't exist");
+  bool fileexists = LittleFS.exists(dataPath);
+  Serial.print(fileexists);
+  if(!fileexists) {
+    Serial.println("File doesn't exist");
     Serial.println("Creating file...");
     // Prepare readings to add to the file
     String message = getSensorReadings() + ",";
     // Apend data to file to create it
     appendFile(LittleFS, dataPath, message.c_str());
-  }
+   }
   else {
-    Serial.println("File already exists");  
+    Serial.println("File already exists"); 
   }
-  file.close();
 
   // Web Server Root URL
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
@@ -193,12 +194,12 @@ void setup() {
     request->send(LittleFS, "/data.txt", "text/txt");
   });
 
-  // Request for raw data
+  // Request for the latest sensor readings
   server.on("/view-data", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(LittleFS, "/data.txt", "text/txt");
   });
 
-  // Request to delete data.txt file
+  // Request for the latest sensor readings
   server.on("/delete-data", HTTP_GET, [](AsyncWebServerRequest *request){
     deleteFile(LittleFS, dataPath);
     request->send(200, "text/plain", "data.txt has been deleted.");
@@ -223,7 +224,8 @@ void setup() {
 
 void loop() {
   if ((millis() - lastTime) > timerDelay) {
-    // Send Events to the client with the Sensor Readings Every 30 minutes
+
+    // Send Events to the client with the Sensor Readings Every 3 seconds
     events.send("ping",NULL,millis());
     events.send(getSensorReadings().c_str(),"new_readings" ,millis());
     String message = getSensorReadings() + ",";
@@ -243,5 +245,6 @@ void loop() {
     lastTime = millis();
 
     Serial.print(readFile(LittleFS, dataPath));
+
   }
 }
