@@ -3,6 +3,9 @@ window.addEventListener('load', getReadings);
 
 // Create Temperature Chart
 var chartT = new Highcharts.Chart({
+  time:{ 
+    useUTC: false
+  },
   chart:{ 
     renderTo:'chart-temperature' 
   },
@@ -38,6 +41,9 @@ var chartT = new Highcharts.Chart({
   
 // Create Humidity Chart
 var chartH = new Highcharts.Chart({
+  time:{ 
+    useUTC: false
+  },
   chart:{ 
     renderTo:'chart-humidity' 
   },
