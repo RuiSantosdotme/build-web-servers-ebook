@@ -27,10 +27,12 @@ String ledState;
 
 // Initialize SPIFFS
 void initSPIFFS() {
-  if (!SPIFFS.begin()) {
+  if (!SPIFFS.begin(true)) {
     Serial.println("An error has occurred while mounting SPIFFS");
   }
-  Serial.println("SPIFFS mounted successfully");
+  else {
+    Serial.println("SPIFFS mounted successfully");
+  }
 }
 
 // Initialize WiFi
