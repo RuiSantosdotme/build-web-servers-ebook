@@ -32,7 +32,9 @@ void initFS() {
   if (!LittleFS.begin()) {
     Serial.println("An error has occurred while mounting LittleFS");
   }
-  Serial.println("LittleFS mounted successfully");
+  else {
+    Serial.println("LittleFS mounted successfully");
+  }
 }
 
 // Initialize WiFi
