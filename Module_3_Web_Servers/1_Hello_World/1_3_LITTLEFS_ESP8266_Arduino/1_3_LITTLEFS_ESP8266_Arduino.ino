@@ -19,11 +19,14 @@ const char* password = "REPLACE_WITH_YOUR_PASSWORD";
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
 
+// Initialize LittleFS
 void initFS() {
   if (!LittleFS.begin()) {
     Serial.println("An error has occurred while mounting LittleFS");
   }
-  Serial.println("LittleFS mounted successfully");
+  else {
+    Serial.println("LittleFS mounted successfully");
+  }
 }
 
 void initWiFi() {
