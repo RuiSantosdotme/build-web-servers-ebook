@@ -26,12 +26,14 @@ const int ledPin = 2;
 // Stores LED state
 String ledState;
 
-// Initialize LitleFS
+// Initialize LittleFS
 void initFS() {
   if (!LittleFS.begin()) {
-    Serial.println("An error has occurred while mounting LitleFS");
+    Serial.println("An error has occurred while mounting LittleFS");
   }
-  Serial.println("LitleFS mounted successfully");
+  else {
+    Serial.println("LittleFS mounted successfully");
+  }
 }
 
 void initWiFi() {
