@@ -17,7 +17,6 @@
 #include "time.h"
 #include <WiFiUdp.h>
 
-
 // Replace with your network credentials
 const char* ssid = "REPLACE_WITH_YOUR_SSID";
 const char* password = "REPLACE_WITH_YOUR_PASSWORD";
@@ -164,6 +163,8 @@ void setup() {
   initWiFi();
   initSPIFFS();
 
+  configTime(0, 0, ntpServer);
+  
   // Create a data.txt file
   bool fileexists = SPIFFS.exists(dataPath);
   Serial.print(fileexists);
@@ -211,8 +212,6 @@ void setup() {
     client->send("hello!", NULL, millis(), 10000);
   });
   server.addHandler(&events);
-
-  configTime(0, 0, ntpServer);
 
   // Start server
   server.begin();
